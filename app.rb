@@ -5,5 +5,13 @@ class App < Sinatra::Base
     erb :new
   end
 
-  
+  post '/student' do
+    @student = Student.new(params[:student])
+
+    params[:student][:courses].each do |details|
+      Course.new(details)
+
+      @courses = Course.all
+    erb :student
+  end
 end
